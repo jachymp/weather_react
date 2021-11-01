@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import weather from './weather.json';
+import Weather from './Weather.js';
+import React from 'react';
+import WeatherDetail from './WeatherDetail';
 
 function App() {
+  const [detail, setDetail] = React.useState("Monday")
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <WeatherDetail detail={weather.find(w => w.day === detail)}/> */}
+      {/* {console.log(weather)} */}
+      {weather.map((w, index) => (
+        <div key={index}>
+          <Weather
+          day={w.day}
+          min={w.min}
+          max={w.max}
+          detail={w}
+          setDetail={setDetail}
+          selected={detail === w.day}
+          />
+        </div>
+      ))}
+        
+        
+      
     </div>
   );
 }
